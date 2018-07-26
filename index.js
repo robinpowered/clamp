@@ -31,10 +31,12 @@ program.command('push')
         fs.readFile(path, 'utf-8').then(contents => {
           const checksum = md5(contents);
           if (Clasp.getCache(path) !== checksum) {
-            const relativePath = path.replace(process.cwd(), '');
-            console.log(chalk`{dim {yellow ${relativePath}}}`);
+            if (!Clasp.running) {
+              const relativePath = path.replace(process.cwd(), '');
+              console.log(chalk`{gray changes from {white {bold ${relativePath}}}}`);
+              Clasp.setCache(path, checksum);
+            }
             Clasp.push();
-            Clasp.setCache(path, checksum);
           }
         })
       })

@@ -17,9 +17,12 @@ class ClaspShell {
   getSpinner(text) {
     return ora({
       text: chalk`{gray ${text}}`,
-      spinner: spinners.flip,
+      spinner: spinners.dots12,
+      spinner: {
+        frames: ['◜', '◝', '◟', '◞',]
+      },
       color: 'gray',
-      interval: 70
+      interval: 40
     });
   }
 
