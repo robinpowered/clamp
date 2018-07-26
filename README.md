@@ -4,7 +4,7 @@
 
 Another interface to interact with Google App Scripts and a local developer environment. Bootstrapped off [clasp](https://github.com/google/clasp), Clamp provides the same functionality with some additional features, with a more modern and helpful feel.
 
-<img src="assets/clamp-1.gif" />
+<img src="assets/clamp-2.gif" />
 
 ## License
 
