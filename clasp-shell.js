@@ -51,7 +51,8 @@ class ClaspShell {
     const numberWidth = (belowIndex + 1).toString().length;
 
     const output = [
-      '',
+      ``,
+      chalk` {underline ${'.' + path.sep + file}}`,
       chalk`   {gray ${this.formatLine(lines[topIndex], topIndex + 1, numberWidth)}}`,
       chalk`   {gray ${this.formatLine(lines[aboveIndex], aboveIndex + 1, numberWidth)}}`,
       chalk` {red {bold >}} ${this.formatLine(lines[currentIndex], currentIndex + 1, numberWidth)}`,
