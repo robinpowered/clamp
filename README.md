@@ -2,7 +2,7 @@
 
 > Light-weight wrapper for Google's clasp CLI tool.
 
-<img width="500" src="assets/clamp-1.gif" />
+<img src="assets/clamp-1.gif" />
 
 ## License
 
