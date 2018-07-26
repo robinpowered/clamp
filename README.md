@@ -1,4 +1,4 @@
-## Clamp
+# Clamp
 
 > Light-weight wrapper for Google's clasp CLI tool.
 
