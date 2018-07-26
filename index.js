@@ -21,12 +21,12 @@ program.command('push')
   .action(cmd => {
     if (cmd.watch) {
       const dir = process.cwd();
-      console.log(chalk`{gray ⎋  watching {bold ${dir.split(path.sep).pop()}} for changes}`);
+      // console.log(chalk`{gray ⎋  watching {bold ${dir.split(path.sep).pop()}} for changes}`);
+      console.log(chalk`{gray ⎋  watching {bold gmail-addon} for changes}`);
       const watcher = chokidar.watch(dir, {
         ignored: /(^|[\/\\])\../,
         persistent: true
       });
-      const log = console.log.bind(console);
       watcher.on('change', path => {
         fs.readFile(path, 'utf-8').then(contents => {
           const checksum = md5(contents);
