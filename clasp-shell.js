@@ -88,9 +88,11 @@ class ClaspShell {
     const spinner = this.getSpinner('pushing...');
     spinner.start();
     exec('clasp push')
-      .then(({ stdout }) => {
+      .then(({ stdout, stderr }) => {
         this.flush();
         spinner.stop();
+
+        console.log('err', stderr)
 
         const lines = stdout.split('\n');
         let fileCount = null;
@@ -113,9 +115,11 @@ class ClaspShell {
         this.flush();
         spinner.stop();
 
+        let parsedOutput = false;
         const lines = stderr.split('\n');
-        const output = lines.reduce((result, line) => {
+        let output = lines.reduce((result, line) => {
           if (line.toLowerCase().indexOf('syntax error') > -1) {
+            parsedOutput = true;
             try {
               const findLineNumber = /line: (\d+)/gi;
               const findFileName = /file: ([\w\/\\]+)/gi;
@@ -129,6 +133,11 @@ class ClaspShell {
           }
           return result;
         }, '');
+
+        // If no output was parsed
+        if (!parsedOutput) {
+          output = chalk`{gray ${stderr}}`;
+        }
 
         if (output) {
           console.log(chalk`{red ✕ push failed}\n${output}`);
@@ -168,9 +177,11 @@ class ClaspShell {
         this.flush();
         spinner.stop();
 
+        let parsedOutput = false;
         const lines = stderr.split('\n');
         const output = lines.reduce((result, line) => {
           if (line.toLowerCase().indexOf('syntax error') > -1) {
+            parsedOutput = true;
             try {
               const findLineNumber = /line: (\d+)/gi;
               const findFileName = /file: ([\w\/\\]+)/gi;
@@ -184,6 +195,11 @@ class ClaspShell {
           }
           return result;
         }, '');
+
+        // If no output was parsed
+        if (!parsedOutput) {
+          output = chalk`{gray ${stderr}}`;
+        }
 
         if (output) {
           console.log(chalk`{red ✕ pull failed\n${err}}`);
