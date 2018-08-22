@@ -22,7 +22,7 @@ class ClaspShell {
         frames: ['◜', '◝', '◟', '◞',]
       },
       color: 'gray',
-      interval: 40
+      interval: 60
     });
   }
 
@@ -91,8 +91,6 @@ class ClaspShell {
       .then(({ stdout, stderr }) => {
         this.flush();
         spinner.stop();
-
-        console.log('err', stderr)
 
         const lines = stdout.split('\n');
         let fileCount = null;
